@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+<body>
+    <h1>Password Manager (Flask)</h1>
+
+    <a href="{{ url_for('add') }}">Add new password</a> |
+    <a href="{{ url_for('export_csv') }}">Export CSV</a>
+
+    <h2>Saved Passwords</h2>
+    <table border="1">
+        <tr>
+            <th>Site</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Action</th>
+        </tr>
+        {% for p in passwords %}
+        <tr>
+            <td>{{ p.site }}</td>
+            <td>{{ p.username }}</td>
+            <td>{{ p.password }}</td>
+            <td><a href="{{ url_for('delete', site=p.site) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

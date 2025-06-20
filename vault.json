@@ -1,10 +1,4 @@
 {
-  "salt": "base64_salt_string",
-  "passwords": [
-    {
-      "site": "gmail.com",
-      "username": "user123",
-      "password": "encrypted_password_here"
-    }
-  ]
+    "salt": "base64_salt_string",
+    "passwords": []
 }
