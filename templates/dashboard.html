@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+  <h2>Vault</h2>
+  <a href="{{ url_for('add') }}" class="btn btn-success mb-3">Add New</a>
+  <a href="{{ url_for('export_csv') }}" class="btn btn-secondary mb-3">Export CSV</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Site</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Copy</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in passwords %}
+      <tr>
+        <td>{{ p.site }}</td>
+        <td>{{ p.username }}</td>
+        <td>
+          <label for="pwd{{ loop.index }}" class="visually-hidden">Password for {{ p.site }}</label>
+          <input type="text" class="form-control" value="{{ p.password }}" id="pwd{{ loop.index }}" readonly title="Password for {{ p.site }}" placeholder="Password">
+        </td>
+        <td><button class="btn btn-outline-primary" onclick="copyToClipboard('pwd{{ loop.index }}')">Copy</button></td>
+        <td><a href="{{ url_for('delete', site=p.site) }}" class="btn btn-danger btn-sm">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+{% block scripts %}
+<script>
+  function copyToClipboard(elementId) {
+    const input = document.getElementById(elementId);
+    input.select();
+    document.execCommand('copy');
+    navigator.clipboard.writeText(input.value);
+    setTimeout(() => {
+      navigator.clipboard.writeText('');
+      alert("Clipboard cleared!");
+    }, 10000); // 10s auto clear
+  }
+</script>
+{% endblock %}

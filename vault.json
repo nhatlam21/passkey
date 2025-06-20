@@ -1,4 +1,10 @@
 {
     "salt": "base64_salt_string",
-    "passwords": []
+    "passwords": [
+        {
+            "site": "gmail.com",
+            "username": "nhatlam21",
+            "password": "gAAAAABoVbg72dleT4jLf_f7BAsNQjipUuCnqe3VDgCTrFljdDiyWFFPPoZU6YDh_nipBSvFr8k6WLGOiYILC49Dkw14QifshQ=="
+        }
+    ]
 }

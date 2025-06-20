@@ -1,28 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Password</title>
-    <script>
-        async function generatePassword() {
-            const res = await fetch('/generate');
-            const data = await res.json();
-            document.getElementById('password').value = data.password;
-        }
-    </script>
-</head>
-<body>
-    <h1>Add New Password</h1>
-
-    <form method="post">
-        <label>Site: <input type="text" name="site" required></label><br>
-        <label>Username: <input type="text" name="username" required></label><br>
-        <label>Password: <input type="text" id="password" name="password" required></label>
-        <button type="button" onclick="generatePassword()">Generate Strong Password</button><br><br>
-        <button type="submit">Add</button>
-    </form>
-
-    <a href="{{ url_for('index') }}">Back to Home</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Add Password{% endblock %}
+{% block content %}
+  <h2>Add New Password</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Site</label>
+      <input type="text" class="form-control" name="site" required placeholder="Enter site name" title="Site Name">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" name="username" required placeholder="Enter username" title="Username">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="text" id="password" class="form-control" name="password" required placeholder="Enter password" title="Password">
+      <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="generatePassword()">Generate Strong Password</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+{% endblock %}
+{% block scripts %}
+<script>
+  async function generatePassword() {
+    const res = await fetch("/generate_password");
+    const data = await res.json();
+    document.getElementById('password').value = data.password;
+  }
+</script>
+{% endblock %}
