@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Verify OTP{% endblock %}
+{% block content %}
+  <h2>Verify OTP</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Email OTP</label>
+      <input type="text" class="form-control" name="email_otp" required placeholder="Enter your email OTP" title="Email OTP">
+    </div>
+    <!--<div class="mb-3">
+      <label class="form-label">Google Authenticator OTP</label>
+      <input type="text" class="form-control" name="google_otp" required placeholder="Enter your Google Authenticator OTP" title="Google Authenticator OTP">
+    </div>!-->
+    <button type="submit" class="btn btn-success">Verify & Login</button>
+  </form>
+{% endblock %}
